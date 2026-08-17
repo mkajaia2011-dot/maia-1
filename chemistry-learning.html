@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧪 ქიმია 8 კლასი - ინტერაქტიული გზამკვლევი</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: #0f172a;
+            color: #f8fafc;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #38bdf8;
+            margin: 15px 0 25px 0;
+            text-align: center;
+            font-size: 28px;
+            text-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+        }
+
+        .tabs {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .tab-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid #334155;
+            color: #cbd5e1;
+            padding: 12px 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn:hover, .tab-btn.active {
+            background: linear-gradient(135deg, #0284c7, #38bdf8);
+            color: #ffffff;
+            border-color: #38bdf8;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 950px;
+            background: rgba(30, 41, 59, 0.8);
+            border: 2px solid #334155;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            backdrop-filter: blur(10px);
+        }
+
+        .section {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .section-title {
+            font-size: 22px;
+            color: #38bdf8;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 2px dashed #334155;
+            padding-bottom: 12px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: #1e293b;
+            border: 2px solid #334155;
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: #38bdf8;
+            box-shadow: 0 10px 25px rgba(56, 189, 248, 0.2);
+        }
+
+        .card h3 {
+            color: #f1f5f9;
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: #94a3b8;
+            font-size: 14px;
+            margin-top: 12px;
+            line-height: 1.5;
+        }
+
+        .card b {
+            color: #38bdf8;
+        }
+
+        .icon-box {
+            width: 120px;
+            height: 120px;
+            background: #0f172a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid #334155;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover .icon-box {
+            border-color: #38bdf8;
+            background: #1e293b;
+        }
+
+        svg {
+            width: 80px;
+            height: 80px;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 25px;
+        }
+
+        .nav-btn {
+            background: #1e293b;
+            color: #38bdf8;
+            border: 2px solid #38bdf8;
+            padding: 10px 24px;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: #38bdf8;
+            color: #0f172a;
+            box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🧪 ქიმიური სამყარო - VIII კლასი</h1>
+
+    <div class="tabs">
+        <button class="tab-btn active" onclick="showTab(0)">1. ნივთიერებები და სხეულები</button>
+        <button class="tab-btn" onclick="showTab(1)">2. თვისებები</button>
+        <button class="tab-btn" onclick="showTab(2)">3. გარდაქმნები</button>
+        <button class="tab-btn" onclick="showTab(3)">4. რეაქციის ნიშნები</button>
+    </div>
+
+    <div class="container">
+        <!-- სექცია 1 -->
+        <div class="section active">
+            <div class="section-title">💧 1. ნივთიერებები და მათი ფიზიკური სხეულები</div>
+            <div class="grid">
+                <div class="card">
+                    <h3>წყალი (H₂O)</h3>
+                    <div class="icon-box">
+                        <svg viewBox="0 0 100 100">
+                            <path d="M50 10 C50 10 20 50 20 70 A30 30 0 0 0 80 70 C80 50 50 10 50 10 Z" fill="url(#waterGrad)"/>
+                            <ellipse cx="40" cy="60" rx="8" ry="15" fill="#ffffff" opacity="0.4" transform="rotate(-20 40 60)"/>
+                            <defs><linearGradient id="waterGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#00d2ff"/><stop offset="100%" stop-color="#3a7bd5"/></linearGradient></defs>
+                        </svg>
+                    </div>
+                    <p><b>სხეული:</b> ჭიქა წყალი / ყინულის კუბი</p>
+                </div>
+
+                <div class="card">
+                    <h3>ალუმინი (Al)</h3>
+                    <div class="icon-box">
+                        <svg viewBox="0 0 100 100">
+                            <polygon points="15,40 50,15 85,40 85,75 50,90 15,75" fill="#94a3b8" stroke="#cbd5e1" stroke-width="3"/>
+                            <polygon points="50,15 85,40 50,55 15,40" fill="#e2e8f0"/>
+                            <polygon points="50,55 85,40 85,75 50,90" fill="#64748b"/>
+                        </svg>
+                    </div>
+                    <p><b>სხეული:</b> ალუმინის ფოლგა / ქილა</p>
+                </div>
+
+                <div class="card">
+                    <h3>იოდი (I₂)</h3>
+                    <div class="icon-box">
+                        <svg viewBox="0 0 100 100">
+                            <polygon points="30,20 60,15 80,45 65,85 25,75 15,45" fill="#7e22ce" stroke="#c084fc" stroke-width="2"/>
+                            <polygon points="40,30 70,25 60,60 30,50" fill="#a855f7"/>
+                        </svg>
+                    </div>
+                    <p><b>სხეული:</b> იოდის კრისტალები / ხსნარი</p>
+                </div>
+
+                <div class="card">
+                    <h3>ოქრო (Au)</h3>
+                    <div class="icon-box">
+                        <svg viewBox="0 0 100 100">
+                            <circle cx="50" cy="50" r="32" fill="none" stroke="url(#goldGrad)" stroke-width="16"/>
+                            <circle cx="50" cy="50" r="32" fill="none" stroke="#fef08a" stroke-width="3" opacity="0.6"/>
+                            <defs><linearGradient id="goldGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#facc15"/><stop offset="50%" stop-color="#ca8a04"/><stop offset="100%" stop-color="#fef08a"/></linearGradient></defs>
+                        </svg>
+                    </div>
+                    <p><b>სხეული:</b> ოქროს ბეჭედი / ზოდი</p>
+                </div>
+
+                <div class="card">
+                    <h3>რკინა (Fe)</h3>
+                    <div class="icon-box">
+                        <svg viewBox="0 0 100 100">
+                            <rect x="42" y="25" width="16" height="55" rx="3" fill="#64748b"/>
+                            <ellipse cx="50" cy="20" rx="22" ry="8" fill="#94a3b8"/>
+                            <polygon points="42,80 58,80 50,95" fill="#475569"/>
+                        </svg>
+                    </div>
+                    <p><b>სხეული:</b> რკინის ლურსმანი / ჯაჭვი</p>
+                </div>
+
+                <div class="card">
+                    <h3>სუფრის მარილი (NaCl)</h3>
+                    <div class="icon-box">
+                        <svg viewBox="0 0 100 100">
+                            <rect x="25" y="40" width="50" height="45" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+                            <rect x="35" y="20" width="30" height="20" rx="3" fill="#94a3b8"/>
+                            <circle cx="43" cy="28" r="2" fill="#0f172a"/><circle cx="50" cy="28" r="2" fill="#0f172a"/><circle cx="57" cy="28" r="2" fill="#0f172a"/>
+                        </svg>
+                    </div>
+                    <p><b>სხეული:</b> მარილის კრისტალები / სამარილე</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- სექცია 2 -->
+        <div class="section">
+            <div class="section-title">⚡ 2. ნივთიერებების ძირითადი თვისებები</div>
+            <div class="grid">
+                <div class="card">
+                    <h3>წყლის თვისებები</h3>
+                    <div class="icon-box">
+                        <svg viewBox="0 0 100 100">
+                            <circle cx="50" cy="50" r="35" fill="#0284c7" opacity="0.3"/>
+                            <text x="50" y="58" text-anchor="middle" fill="#38bdf8" font-size="22" font-weight="bold">H₂O</text>
+                        </svg>
+                    </div>
+                    <p>უფერო, უსუნო სითხე. დუღს <b>100°C</b>-ზე. საუკეთესო ბუნებრივი გამხსნელია.</p>
+                </div>
+
+                <div class="card">
+                    <h3>ალუმინის თვისებები</h3>
+                    <div class="icon-box">
+                        <svg viewBox="0 0 100 100">
+                            <path d="M20 50 L80 50 M50 20 L50 80 M30 30 L70 70 M30 70 L70 30" stroke="#38bdf8" stroke-width="5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <p>მსუბუქი, ვერცხლისფერი ლითონი. აქვს ძალიან კარგი <b>ელექტროგამტარობა</b>.</p>
+                </div>
+
+                <div class="card">
+                    <h3>იოდის თვისებები</h3>
+                    <div class="icon-box">
+                        <svg viewBox="0 0 100 100">
+                            <path d="M30 75 C30 75 50 40 50 20 C50 40 70 75 70 75 Z" fill="#c084fc" opacity="0.8"/>
+                            <circle cx="50" cy="80" r="8" fill="#581c87"/>
+                        </svg>
+                    </div>
+                    <p>მუქი იისფერი კრისტალები. გაცხელებით პირდაპირ აირად ქცევა (<b>სუბლიმაცია</b>).</p>
+                </div>
+
+                <div class="card">
+                    <h3>ოქროს თვისებები</h3>
+                    <div class="icon-box">
+                        <svg viewBox="0 0 100 100">
+                            <polygon points="50,10 63,35 90,38 70,57 75,85 50,70 25,85 30,57 10,38 37,35" fill="#facc15"/>
+                        </svg>
+                    </div>
+                    <p>ბზინვარე ყვითელი ლითონი. <b>არ ჰაერდება და არ ჟანგდება</b>, ძალიან რბილია.</p>
+                </div>
+
+                <div class="card">
+                    <h3>რკინის თვისებები</h3>
+                    <div class="icon-box">
+                        <svg viewBox="0 0 100 100">
+                            <path d="M20 30 Q50 10 80 30 L80 50 Q50 30 20 50 Z" fill="#ef4444"/>
+                            <path d="M20 60 Q50 40 80 60 L80 80 Q50 60 20 80 Z" fill="#3b82f6"/>
+                        </svg>
+                    </div>
+                    <p>მტკიცე, ნაცრისფერი ლითონი. <b>იზიდავს მაგნიტი</b>; ტენიან ჰაერზე ადვილად ჟანგდება.</p>
+                </div>
+
+                <div class="card">
+                    <h3>მარილის თვისებები</h3>
+                    <div class="icon-box">
+                        <svg viewBox="0 0 100 100">
+                            <rect x="30" y="30" width="40" height="40" fill="#ffffff" rx="4"/>
+                            <rect x="20" y="20" width="30" height="30" fill="none" stroke="#38bdf8" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <p>თეთრი კრისტალური ნივთიერება. აქვს მარილიანი გემო და <b>ჩინებულად იხსნება წყალში</b>.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- სექცია 3 -->
+        <div class="section">
+            <div class="section-title">🔥 3. ნივთიერებათა გარდაქმნები</div>
+            <div class="grid">
+                <div class="card">
+                    <h3>წყლის დუღილი და ორთქლი</h3>
+                    <div class="icon-box">
+                        <svg viewBox="0 0 100 100">
+                            <path d="M30 75 Q40 55 30 35 M50 75 Q60 55 50 35 M70 75 Q80 55 70 35" stroke="#38bdf8" stroke-width="6" fill="none" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <p><b>ფიზიკური მოვლენა:</b> წყალი იცვლის მხოლოდ აგრეგატულ მდგომარეობას (სითხე ➔ აირი).</p>
+                </div>
+
+                <div class="card">
+                    <h3>რკინის დაჟანგვა</h3>
+                    <div class="icon-box">
+                        <svg viewBox="0 0 100 100">
+                            <rect x="20" y="40" width="60" height="20" rx="5" fill="#ea580c"/>
+                            <circle cx="35" cy="50" r="4" fill="#7c2d12"/><circle cx="55" cy="45" r="6" fill="#7c2d12"/><circle cx="68" cy="53" r="3" fill="#7c2d12"/>
+                        </svg>
+                    </div>
+                    <p><b>ქიმიური მოვლენა:</b> წარმოიქმნება სრულიად ახალი ნივთიერება — რკინის ჟანგი.</p>
+                </div>
+
+                <div class="card">
+                    <h3>იოდის სუბლიმაცია</h3>
+                    <div class="icon-box">
+                        <svg viewBox="0 0 100 100">
+                            <circle cx="50" cy="80" r="10" fill="#581c87"/>
+                            <path d="M35 60 L50 20 L65 60 Z" fill="#a855f7" opacity="0.6"/>
+                        </svg>
+                    </div>
+                    <p><b>ფიზიკური მოვლენა:</b> მყარი იოდი გაცხელებით პირდაპირ იისფერ აირად გარდაიქმნება.</p>
+                </div>
+
+                <div class="card">
+                    <h3>მარილის გახსნა წყალში</h3>
+                    <div class="icon-box">
+                        <svg viewBox="0 0 100 100">
+                            <rect x="25" y="30" width="50" height="50" fill="none" stroke="#38bdf8" stroke-width="4" rx="5"/>
+                            <circle cx="40" cy="65" r="4" fill="#fff"/><circle cx="60" cy="55" r="4" fill="#fff"/><circle cx="50" cy="70" r="4" fill="#fff"/>
+                        </svg>
+                    </div>
+                    <p><b>ფიზიკური მოვლენა:</b> მარილის კრისტალები ნაწილდება წყლის მოლეკულებს შორის.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- სექცია 4 -->
+        <div class="section">
+            <div class="section-title">✨ 4. ქიმიური რეაქციის თანმხლები ნიშნები</div>
+            <div class="grid">
+                <div class="card">
+                    <h3>1. სითბოს გამოყოფა</h3>
+                    <div class="icon-box">
+                        <svg viewBox="0 0 100 100">
+                            <path d="M50 15 C50 15 25 45 25 65 A25 25 0 0 0 75 65 C75 45 50 15 50 15 Z" fill="#f97316"/>
+                            <path d="M50 35 C50 35 35 55 35 68 A15 15 0 0 0 65 68 C65 55 50 35 50 35 Z" fill="#facc15"/>
+                        </svg>
+                    </div>
+                    <p>რეაქციის დროს ჭურჭელი ცხელდება ან გამოიყოფა ცეცხლი (მაგ. წვა).</p>
+                </div>
+
+                <div class="card">
+                    <h3>2. აირის გამოყოფა</h3>
+                    <div class="icon-box">
+                        <svg viewBox="0 0 100 100">
+                            <circle cx="35" cy="75" r="8" fill="#38bdf8"/><circle cx="55" cy="45" r="14" fill="#38bdf8"/><circle cx="70" cy="20" r="8" fill="#38bdf8"/>
+                        </svg>
+                    </div>
+                    <p>სითხეში იწყება ბუშტუკების აქტიური წარმოქმნა და შიშხინი.</p>
+                </div>
+
+                <div class="card">
+                    <h3>3. ნალექის წარმოქმნა</h3>
+                    <div class="icon-box">
+                        <svg viewBox="0 0 100 100">
+                            <path d="M30 20 L30 80 Q50 90 70 80 L70 20" stroke="#94a3b8" stroke-width="4" fill="none"/>
+                            <path d="M32 65 L68 65 L68 78 Q50 86 32 78 Z" fill="#f8fafc"/>
+                        </svg>
+                    </div>
+                    <p>ორი სითხის შერევით წარმოიქმნება უხსნადი მყარი ნაწილი (ნალექი).</p>
+                </div>
+
+                <div class="card">
+                    <h3>4. ფერის შეცვლა</h3>
+                    <div class="icon-box">
+                        <svg viewBox="0 0 100 100">
+                            <path d="M20 50 A30 30 0 0 1 80 50 Z" fill="#ef4444"/>
+                            <path d="M20 50 A30 30 0 0 0 80 50 Z" fill="#3b82f6"/>
+                            <line x1="20" y1="50" x2="80" y2="50" stroke="#ffffff" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <p>ხსნარი მოულოდნელად იცვლის ფერს ახალი ნივთიერების გაჩენის გამო.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="nav-btn" onclick="changeTab(-1)">❮ წინა გვერდი</button>
+            <button class="nav-btn" onclick="changeTab(1)">შემდეგი გვერდი ❯</button>
+        </div>
+    </div>
+
+    <script>
+        let currentIdx = 0;
+        const sections = document.querySelectorAll('.section');
+        const buttons = document.querySelectorAll('.tab-btn');
+
+        function showTab(index) {
+            sections.forEach((sec, i) => {
+                sec.classList.remove('active');
+                buttons[i].classList.remove('active');
+            });
+            sections[index].classList.add('active');
+            buttons[index].classList.add('active');
+            currentIdx = index;
+        }
+
+        function changeTab(dir) {
+            let next = currentIdx + dir;
+            if (next < 0) next = sections.length - 1;
+            if (next >= sections.length) next = 0;
+            showTab(next);
+        }
+    </script>
+</body>
+</html>
